@@ -1,4 +1,4 @@
-This repository contains the code for the Semaitcs-aware Predictive Inspection Planner.
+**This repository contains the code for the Semaitcs-aware Predictive Inspection Planner.**
 
 ![intro](imgs/intro_v3.png)
 
