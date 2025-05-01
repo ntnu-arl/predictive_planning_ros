@@ -1,0 +1,43 @@
+# manhole_bounding_box_size_min:  [0.0, 0.0, 0.0]
+# manhole_bounding_box_size_max:  [1.6, 1.9, 2.0]
+# canny_low_thres:                20
+# slack:                          2
+# col_offset:                     0
+# row_offset:                     0
+# cluster_radius:                 1.0
+# buffer_size:                    20
+# min_detection_to_be_permenant:  4
+
+# manhole_bounding_box_size_min:  [0.0, 0.5, 0.6]
+# manhole_bounding_box_size_max:  [0.3, 0.9, 1.0]
+# canny_low_thres:                20
+# slack:                          2
+# col_offset:                     6
+# row_offset:                     0
+# cluster_radius:                 1.0
+# buffer_size:                    20
+# min_detection_to_be_permenant:  4
+
+manhole_bounding_box_size_min:  [0.0, 1.2, 1.5]
+manhole_bounding_box_size_max:  [0.6, 2.0, 2.5]
+# manhole_bounding_box_size_min:  [0.0, 0.4, 0.45]
+# manhole_bounding_box_size_max:  [0.15, 0.9, 1.0]
+# manhole_bounding_box_size_min:  [0.0, 0.2, 0.3]
+# manhole_bounding_box_size_max:  [0.15, 0.6, 0.9]
+canny_low_thres:                20
+slack:                          1
+col_offset:                     6
+row_offset:                     0
+cluster_radius:                 2.0
+buffer_size:                    20
+min_detection_to_be_permenant:  4
+max_normal_pitch:               0.6
+min_manhole_robot_distance:     0.3
+indices_to_crop:                [42, 44]
+# indices_to_crop:                [62, 63]
+crop_out_rows:                  false #true
+use_px_offsets:                 false
+# px_offsets:                     [22,2,21,2,21,2,21,3,21,3,21,3,21,3,20,4,20,4,20,4,20,4,20,4,20,4,20,4,20,4,20,4,20,4,20,4,20,4,20,4,20,4,20,4,20,3,20,3,20,3,20,3,20,2,20,2,20,2,20,1,20,1,21,0] # new driver
+# px_offsets:                     [23,3,23,3,23,4,22,4,22,4,22,4,22,5,22,5,22,5,22,5,21,5,21,5,21,5,21,5,21,5,21,5,21,5,21,5,21,5,21,5,21,5,21,4,21,4,21,4,21,4,21,3,21,3,21,3,21,2,21,2,21,1,21,0] # old driver
+max_points_inside_mh:           100000
+mh_centroid_bbox:               [1.0, 0.3, 0.3]

@@ -1,0 +1,56 @@
+SubsdueParams:
+  compress: True
+  iterations: 2
+  limit: 30 #30
+  threshold: 0.25
+  outputLevel: 3
+  outputToFile: False
+  use_pose_cost: False
+  maxVertices: 0
+  normalize_value_with_cost: False
+  minVertices: 3
+  #### #define POSE_COST_MULTIPLIER           2.0
+SSGParams:
+  path_to_save: "/home/mihir/temp_workspaces/subdue_ws/src/predictive_planning/predictive_planning/data/graphs/tfr_8_comp_defects.ssg"
+  path_to_load: "/home/mihir/temp_workspaces/subdue_ws/src/predictive_planning/predictive_planning/data/graphs/sim_3_comp_lidar_det.ssg"
+  lidar_tf_lookup_delay: 0.5
+  wall_distance_thr: 0.5
+  wall_to_long_thr: 1.0
+  wall_to_long_thr_min: 0.5
+  min_wall_points: 300
+  wall_normal_thr: rad(10.0*pi/180)
+  min_compartment_detections: 3
+  compartment_center_thr: 0.75
+  compartment_distance_thr: 7.5
+  long_distance_thr: 0.75
+  min_long_length: 1.0
+  min_points_long: 35
+  min_long_height: 0.1
+  max_long_height: 9.5
+  num_lines_to_extract: 4
+  detection_fov: 360
+  furthest_wall_to_consider: 15.0
+  min_long_detections_for_overlap: 3 # 12
+  min_long_detections: 6 # 16
+  long_only_on_specific_walls: True
+  num_pats_to_modify: 0
+  num_longs_to_skip: 0
+  external_mh_detections: False
+SystemParams:
+  build_bwt_ssg: True
+  num_compartments_to_inspect: 8 # 5
+  max_mh_height: 10.0
+  vp_reach_thr: 1.0
+  use_opportunistic_inspection: False
+PredictionParams:
+  visualize_enhance_hierarchy: False
+  use_predictive_planning: False
+  init_sem_weight: 0.0
+  min_exp_weight: 0.1
+  max_local_exploration_steps: 8
+  max_assisted_exploration_steps: 4 # 2: opp, assist: 4
+  max_assisted_exploration_fails: 2
+  max_local_exploration_fails: 2
+  viewpoint_ang_offset: rad(5.0*pi/180)
+  view_center: False
+  overlap_thr: 0.8

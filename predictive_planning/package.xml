@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>predictive_planning</name>
+  <version>0.0.0</version>
+  <description>
+      Predictive planning
+  </description>
+  <maintainer email="mihir.dharmadhikari@ntnu.no">Mihir Dharmadhikari</maintainer>
+
+  <license>TBD</license>
+  
+  <author>Mihir Dharmadhikari</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>catkin_simple</buildtool_depend>
+  
+  <depend>bwt_ssg_builder</depend>
+  <depend>predictive_planner_common</depend>
+  <depend>subdue</depend>
+  <depend>gbplanner</depend>
+
+</package>

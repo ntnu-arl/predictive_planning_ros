@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>predictive_planner_common</name>
+  <version>0.0.0</version>
+  <description>
+      Front end of SSG builder for BWT
+  </description>
+  <maintainer email="mihir.dharmadhikari@ntnu.no">Mihir Dharmadhikari</maintainer>
+
+  <license>TBD</license>
+  
+  <author>Mihir Dharmadhikari</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>catkin_simple</buildtool_depend>
+
+  <depend>pcl_ros</depend>
+  <depend>geometry_msgs</depend>
+
+</package>

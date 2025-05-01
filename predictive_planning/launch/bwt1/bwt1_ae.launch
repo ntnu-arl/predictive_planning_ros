@@ -1,0 +1,53 @@
+<launch>
+  <arg name="robot_name" default="rmf_obelix"/>
+  <arg name="config_folder" default="bwt1/ae"/>
+  <arg name="launch_prefix" default=""/> <!-- gdb -ex run //args -->
+
+  <!-- Config files -->
+  <arg name="gbplanner_config_file" default="$(find predictive_planning)/config/$(arg config_folder)/gbplanner_config.yaml"/>
+  <arg name="pci_file" default="$(find predictive_planning)/config/$(arg config_folder)/planner_control_interface_sim_config.yaml"/>
+  <arg name="voxblox_config_file" default="$(find predictive_planning)/config/$(arg config_folder)/voxblox_config.yaml"/>
+  <arg name="map_config_file" default="$(arg voxblox_config_file)"/>
+  <arg name="manhole_config_file" default="$(find predictive_planning)/config/$(arg config_folder)/manhole_detector.yaml"/>
+  <arg name="predictive_planner_config" default="$(find predictive_planning)/config/$(arg config_folder)/predictive_planner_config.yaml"/>
+  
+  <node pkg="topic_tools" name="compartment_throttler" type="throttle" args="messages /current_compartment_pose 10 /current_compartment_pose_throttled" />
+
+  <include file="$(find arl_gazebo_sim)/gzc/uav_sim/launch/uav_gzc_bwt_8comp_pred.launch">
+		<arg name="robot_name" value="$(arg robot_name)"/>
+		<arg name="launch_prefix" value="$(arg launch_prefix)"/>
+	</include>
+  
+  <arg name="point_cloud_topic" default="/$(arg robot_name)/velodyne_points" />
+  <arg name="odometry_topic" default="/$(arg robot_name)/ground_truth/odometry_throttled"/>
+
+  <node pkg="topic_tools" name="lidar_dropper" type="drop" args="$(arg point_cloud_topic) 1 2 /rmf_owl/points_dropped" />
+  <node pkg="predictive_planning" name="predictive_planning_node" type="predictive_planning_node" output="screen">
+    <remap from="lidar_cloud" to="/rmf_owl/points_dropped" />
+    <remap from="odometry" to="$(arg odometry_topic)" />
+    <remap from="compartment_centers" to="/current_compartment_pose_throttled" />
+    <remap from="/pointcloud" to="$(arg point_cloud_topic)" />
+    <remap from="manhole_detections" to="/stable_detections" />
+    <remap from="pcl_in" to="$(arg point_cloud_topic)" />
+    <remap from="depth_img_in" to="/img_node/range_image" />
+    <rosparam command="load" file="$(arg gbplanner_config_file)" />
+    <rosparam command="load" file="$(arg map_config_file)" />
+    <rosparam command="load" file="$(arg manhole_config_file)" />
+    <rosparam command="load" file="$(arg predictive_planner_config)" />
+  </node>
+
+  <node pkg="pci_general" type="pci_general_ros_node" name="pci_general_ros_node" output="screen">
+		<remap from="command/trajectory" to="/rmf_obelix/command/trajectory" />
+		<remap from="planner_server" to="planner_service" />
+		<remap from="planner_homing_server" to="gbplanner/homing" />
+		<remap from="odometry" to="$(arg odometry_topic)"/>     
+		<rosparam command="load" file="$(arg pci_file)" />
+	</node>
+
+  <include file="$(find manhole_detector)/launch/depth_image_publisher.launch">
+    <arg name="point_cloud_topic_name" 	default="/$(arg robot_name)/velodyne_points"/>
+  </include>
+
+  <node pkg="rviz" type="rviz" name="gbplanner_ui" output="screen" args="-d $(find predictive_planning)/config/rviz/rmf_obelix.rviz"/>
+
+</launch>
